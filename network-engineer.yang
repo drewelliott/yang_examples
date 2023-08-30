@@ -1,0 +1,71 @@
+module network-engineer {
+  namespace "http://example.com/ns/network-engineer";
+  prefix ne;
+
+  import ietf-inet-types {
+    prefix inet;
+  }
+
+  organization "Example Network Engineering";
+
+  description
+    "YANG model representing attributes for a network engineer role.";
+
+  revision 2023-08-30 {
+    description "Initial version.";
+  }
+
+  typedef engineer-level {
+    type enumeration {
+      enum junior;
+      enum intermediate;
+      enum senior;
+    }
+    description "Defines the level of the network engineer.";
+  }
+
+  container network-engineer {
+    description "Network engineer information.";
+
+    leaf name {
+      type string;
+      description "Name of the network engineer.";
+    }
+
+    leaf email {
+      type string;
+      description "Email address of the network engineer.";
+    }
+
+    leaf experience {
+      type engineer-level;
+      description "Level of experience of the network engineer.";
+    }
+
+    list configured-devices {
+      key "device-name";
+      description "List of devices configured by the engineer.";
+
+      leaf device-name {
+        type string;
+        description "Name of the configured device.";
+      }
+
+      leaf device-type {
+        type string;
+        description "Type of the configured device (router, switch, firewall, etc.).";
+      }
+
+      leaf device-ip {
+        type inet:ipv4-address;
+        description "IP address of the configured device.";
+      }
+
+      leaf configuration-status {
+        type boolean;
+        description "Status of configuration (true if configured, false if not).";
+      }
+    }
+  }
+}
+
