@@ -16,7 +16,7 @@ One of its features is the ability to output a tree representation of a YANG mod
 
 ```
 ╭─drew@snoopy ~/git/yang_examples ‹pyang_tree●› ‹venv› 
-╰─$ cat neteng-tree 
+╰─$ pyang -f tree network-engineer.yang 
 module: network-engineer
   +--rw network-engineer
      +--rw name?                 string
@@ -26,5 +26,5 @@ module: network-engineer
         +--rw device-name             string
         +--rw device-type?            string
         +--rw device-ip?              inet:ipv4-address
-        +--rw configuration-status?   boolean
+        +--rw configuration-status?   boolean 
 ```
